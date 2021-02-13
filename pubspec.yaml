@@ -1,0 +1,29 @@
+name: shorto
+description: Calculator for making a home-made Porto.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  math_expressions: ^2.0.2
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.1
+  font_awesome_flutter: ^8.11.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Lobster
+      fonts:
+        - asset: fonts/Lobster-Regular.ttf
