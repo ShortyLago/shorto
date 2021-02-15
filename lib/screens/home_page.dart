@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shorto/components/calculate_button.dart';
@@ -11,12 +12,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var myGroup = AutoSizeGroup();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Shorto Calculator',
+          style: kLargeTextButton,
         ),
       ),
       body: Column(
@@ -35,24 +38,35 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             flex: 4,
             child: ReusableCard(
-              colour: Color(0xFF795548),
-              cardChild: Column(
-                children: [
-                  Text(
-                    'You are about to make your home-made Porto. \n'
-                    'It\'s pretty easy! \nAll you need is a fine grape spirit and living grape musk. '
-                    'As you may suggest, making of porto is seasonal as long as maturation of wine. \n'
-                    'The next calculation will be done with noting that average alcohol content of the grape must is around 7% '
-                    'and desired alcohol content in final product should be 19%. \n'
-                    'So prepare measuring vessels, mixing jag and hit start button to proceed. \n'
-                    'One last thing: We can\'t call it Porto because it wasn\'t done completely in the Douro Valley. '
-                    'I mixed it with my nickname, but you can call it whatever you want. \n'
-                    '\n'
-                    'Enjoy!',
-                    style: kInfoTextStyle,
-                    textAlign: TextAlign.justify,
-                  ),
-                ],
+              colour: kPrimaryColor,
+              cardChild: AutoSizeText(
+                'You are about to make your first home-made Porto. It\'s pretty easy!'
+                '\n'
+                '\nAll you need to do is mix a fine grape spirit and a grape musk. '
+                'As you may suggest, making of a porto is a seasonal thing. It\'s doable as long as the maturation of wine is still in process. '
+                'The next calculation will be done with noting that average alcohol content of the grape must is around 7% and desired alcohol content in final product should be 19%. '
+                'So prepare the measuring vessels, mixing jag and hit the start button to proceed.'
+                '\n\n'
+                'Oh, one last thing. We can\'t call it "Porto" since it wasn\'t done completely in the Douro Valley. '
+                'I call it Shorto, but you can call it whatever you want. \n'
+                '\n'
+                'Enjoy!',
+                group: myGroup,
+                style: kInfoTextStyle,
+                textAlign: TextAlign.justify,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                right: 20.0,
+              ),
+              child: AutoSizeText(
+                'Shorty',
+                group: myGroup,
+                style: kInfoTextStyle,
+                textAlign: TextAlign.right,
               ),
             ),
           ),

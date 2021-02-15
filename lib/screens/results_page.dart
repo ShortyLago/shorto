@@ -22,7 +22,9 @@ class ResultsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Shorto Calculator',
+          style: kLargeTextButton,
         ),
+        leading: Container(),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -31,19 +33,24 @@ class ResultsPage extends StatelessWidget {
           Expanded(
             child: Container(
               padding: EdgeInsets.all(15.0),
+              // margin: EdgeInsets.only(
+              //   bottom: 20.0,
+              // ),
               alignment: Alignment.center,
-              child: Text(
-                'Results:',
-                style: kBigGuys,
+              child: Center(
+                child: Text(
+                  'Results:',
+                  style: kBigGuys,
+                ),
               ),
             ),
           ),
           Expanded(
-            flex: 6,
+            flex: 5,
             child: ReusableCard(
-              colour: kWidgetColor,
+              colour: kPrimaryColor,
               cardChild: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
@@ -62,12 +69,12 @@ class ResultsPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    grapeMuskMl + 'ml \ngrape musk',
+                    grapeMuskMl + 'ml \ngrape must',
                     style: kResultsWhite,
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    ' to make ',
+                    ' to create ',
                     style: kResultsBlack,
                     textAlign: TextAlign.center,
                   ),
@@ -75,13 +82,16 @@ class ResultsPage extends StatelessWidget {
                     shortoMl + 'ml \nShorto',
                     style: kResultsWhite,
                     textAlign: TextAlign.center,
-                  )
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
                 ],
               ),
             ),
           ),
           CalculateButton(
-            buttonTitle: 'BACK',
+            buttonTitle: 'RE-CALCULATE',
             onTap: () {
               Navigator.pop(context);
             },

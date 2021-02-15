@@ -31,13 +31,23 @@ class _InputsPageState extends State<InputsPage> {
       appBar: AppBar(
         title: Text(
           'Shorto Calculator',
+          style: kLargeTextButton,
+        ),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: kLightPrimaryColor,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: Column(
         children: [
           Expanded(
             child: ReusableCard(
-              colour: kWidgetColor,
+              colour: kPrimaryColor,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -46,7 +56,7 @@ class _InputsPageState extends State<InputsPage> {
                     style: kBigGuys,
                   ),
                   Text(
-                    '[Alcohol contained in grappa]',
+                    'Alcohol contained in grappa',
                     style: kInfoTextStyle,
                     textAlign: TextAlign.center,
                   ),
@@ -104,8 +114,8 @@ class _InputsPageState extends State<InputsPage> {
                     value: grappaPercent.toDouble(),
                     min: grappaPercentMin.toDouble(),
                     max: grappaPercetnMax.toDouble(),
-                    activeColor: Color(0xFF212121),
-                    inactiveColor: Color(0xFFFFFFFF),
+                    activeColor: kBlackColor,
+                    inactiveColor: kLightPrimaryColor,
                     onChanged: (double newValue) {
                       setState(
                         () {
@@ -120,7 +130,7 @@ class _InputsPageState extends State<InputsPage> {
           ),
           Expanded(
             child: ReusableCard(
-              colour: kWidgetColor,
+              colour: kPrimaryColor,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -129,7 +139,7 @@ class _InputsPageState extends State<InputsPage> {
                     style: kBigGuys,
                   ),
                   Text(
-                    '[Final amount]',
+                    'Final amount',
                     style: kInfoTextStyle,
                     textAlign: TextAlign.center,
                   ),
@@ -187,8 +197,8 @@ class _InputsPageState extends State<InputsPage> {
                     value: shortoMl.toDouble(),
                     min: shortoMlMin.toDouble(),
                     max: shortoMlMax.toDouble(),
-                    activeColor: Color(0xFF212121),
-                    inactiveColor: Color(0xFFFFFFFF),
+                    activeColor: kBlackColor,
+                    inactiveColor: kLightPrimaryColor,
                     onChanged: (double newValue) {
                       setState(
                         () {

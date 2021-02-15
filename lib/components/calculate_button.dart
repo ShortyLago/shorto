@@ -18,7 +18,7 @@ class CalculateButton extends StatelessWidget {
             style: kLargeTextButton,
           ),
         ),
-        color: kBottomContainerColour,
+        color: kDarkPrimaryColor,
         margin: EdgeInsets.only(top: 10.0),
         padding: EdgeInsets.only(bottom: 20.0),
         width: double.infinity,
