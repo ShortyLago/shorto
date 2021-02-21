@@ -1,11 +1,13 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:shorto/components/constants.dart';
 
 class CalculateButton extends StatelessWidget {
-  CalculateButton({@required this.buttonTitle, @required this.onTap});
+  CalculateButton({@required this.buttonTitle, @required this.onTap, this.key});
 
   final String buttonTitle;
   final Function onTap;
+  final Key key;
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +15,12 @@ class CalculateButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         child: Center(
-          child: Text(
-            buttonTitle,
-            style: kLargeTextButton,
+          child: FittedBox(
+            child: AutoSizeText(
+              buttonTitle,
+              style: kLargeTextButton,
+              maxFontSize: kLargeTextButton.fontSize,
+            ),
           ),
         ),
         color: kDarkPrimaryColor,
@@ -24,6 +29,7 @@ class CalculateButton extends StatelessWidget {
         width: double.infinity,
         height: kBottomContainerHeight,
       ),
+      key: key,
     );
   }
 }

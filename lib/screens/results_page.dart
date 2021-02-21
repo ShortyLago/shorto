@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shorto/components/autosize_widget.dart';
 import 'package:shorto/components/calculate_button.dart';
 import 'package:shorto/components/constants.dart';
 import 'package:shorto/components/reusable_card.dart';
@@ -20,9 +21,10 @@ class ResultsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Shorto Calculator',
+        title: AutoSizeWidget(
+          text: 'Results',
           style: kLargeTextButton,
+          key: Key('title'),
         ),
         leading: Container(),
       ),
@@ -38,9 +40,10 @@ class ResultsPage extends StatelessWidget {
               // ),
               alignment: Alignment.center,
               child: Center(
-                child: Text(
-                  'Results:',
+                child: AutoSizeWidget(
+                  text: 'Results:',
                   style: kBigGuys,
+                  key: Key('text_1'),
                 ),
               ),
             ),
@@ -48,40 +51,39 @@ class ResultsPage extends StatelessWidget {
           Expanded(
             flex: 5,
             child: ReusableCard(
-              colour: kPrimaryColor,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    'Mix ',
+                  AutoSizeWidget(
+                    text: 'Mix',
                     style: kResultsBlack,
-                    textAlign: TextAlign.center,
+                    key: Key('text_2'),
                   ),
-                  Text(
-                    grappaMl + 'ml \n' + grappaPerc + '% Grappa',
+                  AutoSizeWidget(
+                    text: grappaMl + 'ml \n' + grappaPerc + '% Grappa',
                     style: kResultsWhite,
-                    textAlign: TextAlign.center,
+                    key: Key('text_3'),
                   ),
-                  Text(
-                    ' with ',
+                  AutoSizeWidget(
+                    text: 'with',
                     style: kResultsBlack,
-                    textAlign: TextAlign.center,
+                    key: Key('text_4'),
                   ),
-                  Text(
-                    grapeMuskMl + 'ml \ngrape must',
+                  AutoSizeWidget(
+                    text: grapeMuskMl + 'ml \ngrape must',
                     style: kResultsWhite,
-                    textAlign: TextAlign.center,
+                    key: Key('text_5'),
                   ),
-                  Text(
-                    ' to create ',
+                  AutoSizeWidget(
+                    text: 'to create',
                     style: kResultsBlack,
-                    textAlign: TextAlign.center,
+                    key: Key('text_6'),
                   ),
-                  Text(
-                    shortoMl + 'ml \nShorto',
+                  AutoSizeWidget(
+                    text: shortoMl + 'ml \nShorto',
                     style: kResultsWhite,
-                    textAlign: TextAlign.center,
+                    key: Key('text_7'),
                   ),
                   SizedBox(
                     height: 20.0,
@@ -95,6 +97,7 @@ class ResultsPage extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
             },
+              key: Key('calc_btn'),
           ),
         ],
       ),

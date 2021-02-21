@@ -1,25 +1,23 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shorto/components/autosize_widget.dart';
 import 'package:shorto/components/calculate_button.dart';
 import 'package:shorto/components/constants.dart';
 import 'package:shorto/components/reusable_card.dart';
 import 'package:shorto/screens/inputs_page.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
+class HomePage extends StatelessWidget {
+  final myGroup = AutoSizeGroup();
 
-class _HomePageState extends State<HomePage> {
-  var myGroup = AutoSizeGroup();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Shorto Calculator',
+        title: AutoSizeWidget(
+          text: 'Shorto Calculator',
           style: kLargeTextButton,
+          key: Key('title'),
         ),
       ),
       body: Column(
@@ -29,16 +27,16 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: Container(
               alignment: Alignment.center,
-              child: Text(
-                'Welcome',
+              child: AutoSizeWidget(
+                text: 'Welcome',
                 style: kBigGuys,
+                key: Key('text_1'),
               ),
             ),
           ),
           Expanded(
             flex: 4,
             child: ReusableCard(
-              colour: kPrimaryColor,
               cardChild: AutoSizeText(
                 'You are about to make your first home-made Porto. It\'s pretty easy!'
                 '\n'
@@ -54,6 +52,8 @@ class _HomePageState extends State<HomePage> {
                 group: myGroup,
                 style: kInfoTextStyle,
                 textAlign: TextAlign.justify,
+                maxFontSize: kInfoTextStyle.fontSize,
+                key: Key('text_2'),
               ),
             ),
           ),
@@ -67,6 +67,8 @@ class _HomePageState extends State<HomePage> {
                 group: myGroup,
                 style: kInfoTextStyle,
                 textAlign: TextAlign.right,
+                maxFontSize: kInfoTextStyle.fontSize,
+                key: Key('text_3'),
               ),
             ),
           ),
@@ -80,6 +82,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             },
+            key: Key('calc_btn'),
           ),
         ],
       ),

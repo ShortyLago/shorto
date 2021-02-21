@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
+double grappaPercent = 40.0;
+double shortoMl = 700.0;
+
+double grappaPercentMin = 30.0;
+double grappaPercetnMax = 70.0;
+double shortoMlMin = 100.0;
+double shortoMlMax = 1500.0;
+
 const kBottomContainerHeight = 80.0;
 const kDarkPrimaryColor = Color(0xFF7B1FA2);
 const kPrimaryColor = Color(0xFF9C27B0);
@@ -43,12 +51,10 @@ const kResultsBlack = TextStyle(
   fontSize: 40.0,
   fontWeight: FontWeight.w900,
   color: kBlackColor,
-  // fontFamily: 'Lobster',
 );
 
 const kResultsWhite = TextStyle(
   fontSize: 40.0,
   fontWeight: FontWeight.w900,
   color: kLightPrimaryColor,
-  // fontFamily: 'Lobster',
 );
