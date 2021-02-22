@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shorto/components/autosize_widget.dart';
 import 'package:shorto/components/calculate_button.dart';
 import 'package:shorto/components/constants.dart';
 import 'package:shorto/components/reusable_card.dart';
@@ -20,9 +21,12 @@ class ResultsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Shorto Calculator',
+        title: AutoSizeWidget(
+          text: 'Results',
+          style: kLargeTextButton,
+          key: Key('title'),
         ),
+        leading: Container(),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -31,60 +35,69 @@ class ResultsPage extends StatelessWidget {
           Expanded(
             child: Container(
               padding: EdgeInsets.all(15.0),
+              // margin: EdgeInsets.only(
+              //   bottom: 20.0,
+              // ),
               alignment: Alignment.center,
-              child: Text(
-                'Results:',
-                style: kBigGuys,
+              child: Center(
+                child: AutoSizeWidget(
+                  text: 'Results:',
+                  style: kBigGuys,
+                  key: Key('text_1'),
+                ),
               ),
             ),
           ),
           Expanded(
-            flex: 6,
+            flex: 5,
             child: ReusableCard(
-              colour: kWidgetColor,
               cardChild: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    'Mix ',
+                  AutoSizeWidget(
+                    text: 'Mix',
                     style: kResultsBlack,
-                    textAlign: TextAlign.center,
+                    key: Key('text_2'),
                   ),
-                  Text(
-                    grappaMl + 'ml \n' + grappaPerc + '% Grappa',
+                  AutoSizeWidget(
+                    text: grappaMl + 'ml \n' + grappaPerc + '% Grappa',
                     style: kResultsWhite,
-                    textAlign: TextAlign.center,
+                    key: Key('text_3'),
                   ),
-                  Text(
-                    ' with ',
+                  AutoSizeWidget(
+                    text: 'with',
                     style: kResultsBlack,
-                    textAlign: TextAlign.center,
+                    key: Key('text_4'),
                   ),
-                  Text(
-                    grapeMuskMl + 'ml \ngrape musk',
+                  AutoSizeWidget(
+                    text: grapeMuskMl + 'ml \ngrape must',
                     style: kResultsWhite,
-                    textAlign: TextAlign.center,
+                    key: Key('text_5'),
                   ),
-                  Text(
-                    ' to make ',
+                  AutoSizeWidget(
+                    text: 'to create',
                     style: kResultsBlack,
-                    textAlign: TextAlign.center,
+                    key: Key('text_6'),
                   ),
-                  Text(
-                    shortoMl + 'ml \nShorto',
+                  AutoSizeWidget(
+                    text: shortoMl + 'ml \nShorto',
                     style: kResultsWhite,
-                    textAlign: TextAlign.center,
-                  )
+                    key: Key('text_7'),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
                 ],
               ),
             ),
           ),
           CalculateButton(
-            buttonTitle: 'BACK',
+            buttonTitle: 'RE-CALCULATE',
             onTap: () {
               Navigator.pop(context);
             },
+              key: Key('calc_btn'),
           ),
         ],
       ),

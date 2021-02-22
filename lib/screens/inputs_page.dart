@@ -1,10 +1,12 @@
 import 'dart:ui';
-
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:sentry/sentry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shorto/calculation.dart';
+import 'package:shorto/components/autosize_widget.dart';
 import 'package:shorto/components/calculate_button.dart';
 import 'package:shorto/components/constants.dart';
 import 'package:shorto/components/reusable_card.dart';
@@ -17,38 +19,42 @@ class InputsPage extends StatefulWidget {
 }
 
 class _InputsPageState extends State<InputsPage> {
-  int grappaPercent = 40;
-  int shortoMl = 700;
-
-  int grappaPercentMin = 30;
-  int grappaPercetnMax = 70;
-  int shortoMlMin = 100;
-  int shortoMlMax = 1500;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Shorto Calculator',
+        title: AutoSizeWidget(
+          text: 'Inputs',
+          style: kLargeTextButton,
+          key: Key('title'),
+        ),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: kLightPrimaryColor,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          key: Key('back_btn'),
         ),
       ),
       body: Column(
         children: [
           Expanded(
             child: ReusableCard(
-              colour: kWidgetColor,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
-                    'Grappa',
+                  AutoSizeWidget(
+                    text: 'Grappa',
                     style: kBigGuys,
+                    key: Key('text_1'),
                   ),
-                  Text(
-                    '[Alcohol contained in grappa]',
+                  AutoSizeWidget(
+                    text: 'Alcohol content',
                     style: kInfoTextStyle,
-                    textAlign: TextAlign.center,
+                    key: Key('text_2'),
                   ),
                   SizedBox(
                     width: 5.0,
@@ -58,14 +64,16 @@ class _InputsPageState extends State<InputsPage> {
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
-                      Text(
-                        grappaPercent.toString(),
+                      AutoSizeWidget(
+                        text: grappaPercent.toStringAsFixed(0),
                         style: kNumberTextStyle,
+                        key: Key('text_3'),
                       ),
-                      Text(
-                        '%',
-                        style: kUnitsTextStyle,
-                      )
+                      AutoSizeWidget(
+                        text: '%',
+                        style: kInfoTextStyle,
+                        key: Key('text_4'),
+                      ),
                     ],
                   ),
                   Row(
@@ -82,6 +90,7 @@ class _InputsPageState extends State<InputsPage> {
                             },
                           );
                         },
+                        key: Key('btn_grappa_perc_minus'),
                       ),
                       SizedBox(
                         width: 30.0,
@@ -97,6 +106,7 @@ class _InputsPageState extends State<InputsPage> {
                             },
                           );
                         },
+                        key: Key('btn_grappa_perc_plus'),
                       ),
                     ],
                   ),
@@ -104,12 +114,12 @@ class _InputsPageState extends State<InputsPage> {
                     value: grappaPercent.toDouble(),
                     min: grappaPercentMin.toDouble(),
                     max: grappaPercetnMax.toDouble(),
-                    activeColor: Color(0xFF212121),
-                    inactiveColor: Color(0xFFFFFFFF),
+                    activeColor: kBlackColor,
+                    inactiveColor: kLightPrimaryColor,
                     onChanged: (double newValue) {
                       setState(
                         () {
-                          grappaPercent = newValue.round();
+                          grappaPercent = newValue.roundToDouble();
                         },
                       );
                     },
@@ -120,18 +130,18 @@ class _InputsPageState extends State<InputsPage> {
           ),
           Expanded(
             child: ReusableCard(
-              colour: kWidgetColor,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
-                    'Shorto',
+                  AutoSizeWidget(
+                    text: 'Shorto',
                     style: kBigGuys,
+                    key: Key('text_5'),
                   ),
-                  Text(
-                    '[Final amount]',
+                  AutoSizeWidget(
+                    text: 'Final amount',
                     style: kInfoTextStyle,
-                    textAlign: TextAlign.center,
+                    key: Key('text_6'),
                   ),
                   SizedBox(
                     width: 5.0,
@@ -141,13 +151,21 @@ class _InputsPageState extends State<InputsPage> {
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
-                      Text(
-                        shortoMl.toString(),
+                      AutoSizeText(
+                        shortoMl.toStringAsFixed(0),
                         style: kNumberTextStyle,
+                        key: Key('text_7'),
+                        maxLines: 1,
+                        minFontSize: 5.0,
+                        maxFontSize: 50.0,
                       ),
-                      Text(
+                      AutoSizeText(
                         'ml',
                         style: kUnitsTextStyle,
+                        key: Key('text_8'),
+                        maxLines: 1,
+                        minFontSize: 5.0,
+                        maxFontSize: 18.0,
                       ),
                     ],
                   ),
@@ -165,6 +183,7 @@ class _InputsPageState extends State<InputsPage> {
                             },
                           );
                         },
+                        key: Key('btn_shorto_ml_minus'),
                       ),
                       SizedBox(
                         width: 30.0,
@@ -180,6 +199,7 @@ class _InputsPageState extends State<InputsPage> {
                             },
                           );
                         },
+                        key: Key('btn_shorto_ml_plus'),
                       ),
                     ],
                   ),
@@ -187,12 +207,12 @@ class _InputsPageState extends State<InputsPage> {
                     value: shortoMl.toDouble(),
                     min: shortoMlMin.toDouble(),
                     max: shortoMlMax.toDouble(),
-                    activeColor: Color(0xFF212121),
-                    inactiveColor: Color(0xFFFFFFFF),
+                    activeColor: kBlackColor,
+                    inactiveColor: kLightPrimaryColor,
                     onChanged: (double newValue) {
                       setState(
                         () {
-                          shortoMl = newValue.round();
+                          shortoMl = newValue.roundToDouble();
                         },
                       );
                     },
@@ -203,24 +223,32 @@ class _InputsPageState extends State<InputsPage> {
           ),
           CalculateButton(
             buttonTitle: 'CALCULATE',
-            onTap: () {
-              Calculation result = Calculation(
-                  grappaPercent: grappaPercent.toDouble(),
-                  shortoMl: shortoMl.toDouble());
-              double grappaMl = result.calculateGrappaMl();
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ResultsPage(
-                    grappaMl: grappaMl.toStringAsFixed(0),
-                    grappaPerc: grappaPercent.toString(),
-                    grapeMuskMl:
-                        result.calculateMuskMl(grappaMl).toStringAsFixed(0),
-                    shortoMl: shortoMl.toString(),
+            onTap: () async {
+              try {
+                Calculation result = Calculation(
+                    grappaPercent: grappaPercent.toDouble(),
+                    shortoMl: shortoMl.toDouble());
+                double grappaMl = result.calculateGrappaMl();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResultsPage(
+                      grappaMl: grappaMl.toStringAsFixed(0),
+                      grappaPerc: grappaPercent.toStringAsFixed(0),
+                      grapeMuskMl:
+                          result.calculateMuskMl(grappaMl).toStringAsFixed(0),
+                      shortoMl: shortoMl.toStringAsFixed(0),
+                    ),
                   ),
-                ),
-              );
+                );
+              } catch (exception, stackTrace) {
+                await Sentry.captureException(
+                  exception,
+                  stackTrace: stackTrace,
+                );
+              }
             },
+            key: Key('calc_btn'),
           ),
         ],
       ),
