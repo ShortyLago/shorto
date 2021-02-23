@@ -36,7 +36,7 @@ const kUnitsTextStyle = TextStyle(
 );
 
 const kNumberTextStyle = TextStyle(
-  fontSize: 50.0,
+  fontSize: 60.0,
   fontWeight: FontWeight.w900,
   color: kLightPrimaryColor,
 );

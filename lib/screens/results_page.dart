@@ -34,7 +34,7 @@ class ResultsPage extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(15.0),
+              // padding: EdgeInsets.all(15.0),
               // margin: EdgeInsets.only(
               //   bottom: 20.0,
               // ),
@@ -81,7 +81,7 @@ class ResultsPage extends StatelessWidget {
                     key: Key('text_6'),
                   ),
                   AutoSizeWidget(
-                    text: shortoMl + 'ml \nShorto',
+                    text: shortoMl + 'ml Shorto',
                     style: kResultsWhite,
                     key: Key('text_7'),
                   ),
@@ -92,12 +92,14 @@ class ResultsPage extends StatelessWidget {
               ),
             ),
           ),
-          CalculateButton(
-            buttonTitle: 'RE-CALCULATE',
-            onTap: () {
-              Navigator.pop(context);
-            },
-              key: Key('calc_btn'),
+          Expanded(
+            child: CalculateButton(
+              buttonTitle: 'RE-CALCULATE',
+              onTap: () {
+                Navigator.pop(context);
+              },
+                key: Key('calc_btn'),
+            ),
           ),
         ],
       ),

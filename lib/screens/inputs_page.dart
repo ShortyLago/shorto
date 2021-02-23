@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:sentry/sentry.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +41,7 @@ class _InputsPageState extends State<InputsPage> {
       body: Column(
         children: [
           Expanded(
+            flex: 4,
             child: ReusableCard(
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -129,6 +129,7 @@ class _InputsPageState extends State<InputsPage> {
             ),
           ),
           Expanded(
+            flex: 4,
             child: ReusableCard(
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -151,21 +152,15 @@ class _InputsPageState extends State<InputsPage> {
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
-                      AutoSizeText(
-                        shortoMl.toStringAsFixed(0),
+                      AutoSizeWidget(
+                        text: shortoMl.toStringAsFixed(0),
                         style: kNumberTextStyle,
                         key: Key('text_7'),
-                        maxLines: 1,
-                        minFontSize: 5.0,
-                        maxFontSize: 50.0,
                       ),
-                      AutoSizeText(
-                        'ml',
+                      AutoSizeWidget(
+                        text: 'ml',
                         style: kUnitsTextStyle,
                         key: Key('text_8'),
-                        maxLines: 1,
-                        minFontSize: 5.0,
-                        maxFontSize: 18.0,
                       ),
                     ],
                   ),
@@ -221,34 +216,36 @@ class _InputsPageState extends State<InputsPage> {
               ),
             ),
           ),
-          CalculateButton(
-            buttonTitle: 'CALCULATE',
-            onTap: () async {
-              try {
-                Calculation result = Calculation(
-                    grappaPercent: grappaPercent.toDouble(),
-                    shortoMl: shortoMl.toDouble());
-                double grappaMl = result.calculateGrappaMl();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ResultsPage(
-                      grappaMl: grappaMl.toStringAsFixed(0),
-                      grappaPerc: grappaPercent.toStringAsFixed(0),
-                      grapeMuskMl:
-                          result.calculateMuskMl(grappaMl).toStringAsFixed(0),
-                      shortoMl: shortoMl.toStringAsFixed(0),
+          Expanded(
+            child: CalculateButton(
+              buttonTitle: 'CALCULATE',
+              onTap: () async {
+                try {
+                  Calculation result = Calculation(
+                      grappaPercent: grappaPercent.toDouble(),
+                      shortoMl: shortoMl.toDouble());
+                  double grappaMl = result.calculateGrappaMl();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ResultsPage(
+                        grappaMl: grappaMl.toStringAsFixed(0),
+                        grappaPerc: grappaPercent.toStringAsFixed(0),
+                        grapeMuskMl:
+                            result.calculateMuskMl(grappaMl).toStringAsFixed(0),
+                        shortoMl: shortoMl.toStringAsFixed(0),
+                      ),
                     ),
-                  ),
-                );
-              } catch (exception, stackTrace) {
-                await Sentry.captureException(
-                  exception,
-                  stackTrace: stackTrace,
-                );
-              }
-            },
-            key: Key('calc_btn'),
+                  );
+                } catch (exception, stackTrace) {
+                  await Sentry.captureException(
+                    exception,
+                    stackTrace: stackTrace,
+                  );
+                }
+              },
+              key: Key('calc_btn'),
+            ),
           ),
         ],
       ),
